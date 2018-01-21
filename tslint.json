@@ -24,7 +24,8 @@
     "import-spacing": true,
     "indent": [
       true,
-      "spaces"
+      "spaces",
+      4
     ],
     "interface-over-type-literal": true,
     "label-position": true,
@@ -126,7 +127,7 @@
     "component-selector": [
       true,
       "element",
-      "app",
+      "hn",
       "kebab-case"
     ],
     "no-output-on-prefix": true,
