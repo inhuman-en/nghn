@@ -1,0 +1,37 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    padding: 0 20px;
+
+    box-shadow: 0px 1px 3px #da1e37;
+
+    nav {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 100%;
+
+        .app-logo {
+            padding: 0 20px 0 0;
+            margin-top: 25px;
+
+            img {
+                width: 65px;
+                height: 65px;
+            }
+        }
+
+        .nav-link {
+            padding: 0 20px;
+            line-height: 50px;
+
+            &:hover {
+                color: #fff;
+                background-color: #da1e37;
+            }
+        }
+    }
+}

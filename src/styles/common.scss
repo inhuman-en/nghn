@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../../node_modules/normalize.css/normalize.css';
+
+@import '_var.scss';
+
+body {
+    font-family: Roboto;
+    margin-top: 70px;
+}
+
+a {
+    text-decoration: none;
+    color: #e24358;
+}
