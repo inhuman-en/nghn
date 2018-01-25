@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HackerNewsService } from '../../shared/index';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'hn-topnews',
@@ -6,31 +8,11 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./topnews.component.scss']
 })
 export class TopnewsComponent implements OnInit {
-    items: any[] = [
-        {
-            title: 'item',
-            url: 'http://example.com'
-        },
-        {
-            title: 'item',
-            url: 'http://example.com'
-        },
-        {
-            title: 'item',
-            url: 'http://example.com'
-        },
-        {
-            title: 'item',
-            url: 'http://example.com'
-        },
+    topNews$: Observable<any>;
 
-        {
-            title: 'item',
-            url: 'http://example.com'
-        }
-    ];
+    constructor(private service: HackerNewsService) {}
 
-    constructor() {}
-
-    ngOnInit() {}
+    ngOnInit() {
+        this.topNews$ = this.service.getNews(1);
+    }
 }
