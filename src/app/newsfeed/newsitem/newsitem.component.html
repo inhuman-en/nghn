@@ -1,3 +1,6 @@
-<p>
-  newsitem works!
-</p>
+<div class='news-item-link'>
+    <a [href]='item.url'>{{item.title}}</a> (<a [href]='item.domain'>{{item.domain}}</a>)
+</div>
+<div class='news-item-meta'>
+    {{item.points}} by {{item.user}} {{item.time_ago}} (hide) {{item.comments_count}} comments
+</div>

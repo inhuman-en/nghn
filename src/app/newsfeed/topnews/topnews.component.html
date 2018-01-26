@@ -1,5 +1,5 @@
-<div class='wrap'>
-    <div *ngFor='let item of topNews$ | async' >
-        {{item.title}} -> <a href='http://{{item.url}}'>link</a>
-    </div>
-</div>
+<section class='news-wrap'>
+    <hn-newsitem *ngFor='let item of topNews$ | async' [item]='item'>
+
+    </hn-newsitem>
+</section>>

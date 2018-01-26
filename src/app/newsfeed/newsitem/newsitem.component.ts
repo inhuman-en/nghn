@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'hn-newsitem',
-  templateUrl: './newsitem.component.html',
-  styleUrls: ['./newsitem.component.scss']
+    selector: 'hn-newsitem',
+    templateUrl: './newsitem.component.html',
+    styleUrls: ['./newsitem.component.scss']
 })
 export class NewsitemComponent implements OnInit {
 
-  constructor() { }
+    // todo: domain typing
+    @Input() item: any = {};
 
-  ngOnInit() {
-  }
+    constructor() {}
 
+    ngOnInit() {}
 }
