@@ -5,7 +5,8 @@ const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'feed'
+        // todo: query is not passed or sime reason
+        redirectTo: 'feed?page=1'
     }
 ];
 

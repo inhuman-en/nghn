@@ -2,4 +2,9 @@
     <hn-newsitem *ngFor='let item of topNews$ | async' [item]='item'>
 
     </hn-newsitem>
-</section>>
+</section>
+
+<nav>
+    <a *ngIf="prevPageQuery.page > 0" [routerLink]="['/feed']" [queryParams]="prevPageQuery" >Prev</a>
+    <a [routerLink]="['/feed']" [queryParams]="nextPageQuery" >Next</a>
+</nav>
