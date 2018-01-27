@@ -13,15 +13,19 @@ import {
     styleUrls: ['./paginator.component.scss']
 })
 export class PaginatorComponent implements OnInit, OnChanges {
+    @Input() url: string;
     @Input() pagingParam = 'page';
     @Input() currentPage: number;
 
     prevPageQuery: object;
     nextPageQuery: object;
+    routerLinkParams: any;
 
     constructor() {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.routerLinkParams = [this.url];
+    }
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes.currentPage) {

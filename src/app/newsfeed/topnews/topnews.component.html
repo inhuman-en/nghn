@@ -1,4 +1,4 @@
-<hn-paginator [currentPage]="currentPage">
+<hn-paginator url="/feed" [currentPage]="currentPage">
     <section class='news-wrap'>
         <hn-newsitem *ngFor='let item of topNews$ | async' [item]='item'>
 
