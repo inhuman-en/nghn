@@ -1,0 +1,8 @@
+@import '../../../styles/_var.scss';
+
+$paginationHeight: 40px;
+
+.news-wrap {
+    overflow-y: auto;
+    height: calc(100vh - #{$bodyMarginTop} - #{$paginationHeight});
+}

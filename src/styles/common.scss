@@ -5,7 +5,8 @@
 
 body {
     font-family: Roboto;
-    margin-top: 70px;
+    margin-top: $bodyMarginTop;
+    overflow: hidden;
 }
 
 a {

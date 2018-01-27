@@ -1,6 +1,16 @@
-<div class='news-item-link'>
-    <a [href]='item.url'>{{item.title}}</a> (<a [href]='item.domain'>{{item.domain}}</a>)
-</div>
-<div class='news-item-meta'>
-    {{item.points}} by {{item.user}} {{item.time_ago}} (hide) {{item.comments_count}} comments
+<div class='news-item'>
+    <div class='news-item-link'>
+        <a [href]='item.url'>{{item.title}}</a>
+    </div>
+    <div class='news-item-meta'>
+        <button>{{item.points}}</button>
+        <ul>
+            <li>source:
+                <a [href]='item.domain'>{{item.domain}}</a>
+            </li>
+            <li>author: {{item.user}}</li>
+            <li>posted: {{item.time_ago}}</li>
+            <li>comments: {{item.comments_count}}</li>
+        </ul>
+    </div>
 </div>
