@@ -1,0 +1,5 @@
+<ng-content></ng-content>
+<nav>
+    <a *ngIf="prevPageQuery.page > 0" [routerLink]="['']" [queryParams]="prevPageQuery" >Prev</a>
+    <a [routerLink]="['']" [queryParams]="nextPageQuery" >Next</a>
+</nav>
