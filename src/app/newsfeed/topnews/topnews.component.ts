@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HackerNewsService } from '../../shared/index';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/share';
 
 @Component({
     selector: 'hn-topnews',
@@ -26,7 +28,19 @@ export class TopnewsComponent implements OnInit {
     }
 
     private fetchNewsByPage(page: number): void {
-        this.topNews$ = this.service.getNews(page);
+        this.topNews$ = this.service
+            .getNews(page)
+            .do(
+                () => this.toggleSpinner(false),
+                () => this.toggleSpinner(false)
+            )
+            .share();
+
+        this.showSpinner = true;
+    }
+
+    private toggleSpinner(on: boolean) {
+        this.showSpinner = on;
     }
 
     private updateCurrentPage(currentPage: number): void {
