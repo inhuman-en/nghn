@@ -1,8 +1,22 @@
 @import '../../../styles/_var.scss';
 
-$paginationHeight: 40px;
+$paginationHeight: 30px;
 
 .news-wrap {
     overflow-y: auto;
     height: calc(100vh - #{$bodyMarginTop} - #{$paginationHeight});
+
+    .spinner {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.paginator-wrap {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: $paginationHeight;
 }

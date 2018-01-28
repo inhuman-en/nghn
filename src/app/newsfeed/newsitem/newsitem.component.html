@@ -3,14 +3,18 @@
         <a [href]='item.url'>{{item.title}}</a>
     </div>
     <div class='news-item-meta'>
-        <button>{{item.points}}</button>
-        <ul>
-            <li>source:
-                <a [href]='item.domain'>{{item.domain}}</a>
-            </li>
-            <li>author: {{item.user}}</li>
-            <li>posted: {{item.time_ago}}</li>
-            <li>comments: {{item.comments_count}}</li>
-        </ul>
+        <button>
+            <i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;{{item.points}}</button>
+        <span>from
+            <a class='link-accent' [href]='item.domain'>{{item.domain}}</a>
+        </span> |
+        <span>
+            <a href='#'>by {{item.user}}</a>
+        </span> |
+
+        <span>{{item.time_ago}}</span> |
+        <span>
+            <a href='#'>{{item.comments_count}} comments</a>
+        </span>
     </div>
 </div>

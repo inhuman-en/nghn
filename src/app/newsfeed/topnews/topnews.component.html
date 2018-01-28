@@ -1,7 +1,13 @@
-<hn-paginator url="/feed" [currentPage]="currentPage">
-    <section class='news-wrap'>
-        <hn-newsitem *ngFor='let item of topNews$ | async' [item]='item'>
+<section class='news-wrap'>
+    <div *ngIf='showSpinner' class='spinner'>
+        Loading...
+    </div>
 
-        </hn-newsitem>
-    </section>
-</hn-paginator>
+    <hn-newsitem *ngFor='let item of topNews$ | async' [item]='item'>
+
+    </hn-newsitem>
+</section>
+
+<footer class='paginator-wrap'>
+    <hn-paginator url="/feed" [currentPage]="currentPage"></hn-paginator>
+</footer>

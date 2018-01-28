@@ -11,6 +11,7 @@ import 'rxjs/add/operator/map';
 })
 export class TopnewsComponent implements OnInit {
     currentPage = 1;
+    showSpinner = false;
     topNews$: Observable<any>;
     page$: Observable<number>;
 
@@ -36,8 +37,10 @@ export class TopnewsComponent implements OnInit {
         this.page$ = this.route.queryParamMap.map(params =>
             parseInt(params.get('page'), 10)
         );
-        // todo: test this by navigating via router and verifying properties
-        this.page$.subscribe(this.fetchNewsByPage.bind(this));
-        this.page$.subscribe(this.updateCurrentPage.bind(this));
+
+        this.page$.subscribe((page: number) => {
+            this.fetchNewsByPage(page);
+            this.updateCurrentPage(page);
+        });
     }
 }

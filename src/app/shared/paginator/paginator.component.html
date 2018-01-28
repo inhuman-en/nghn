@@ -1,5 +1,4 @@
-<ng-content></ng-content>
-<nav>
-    <a *ngIf="prevPageQuery.page > 0" [routerLink]="routerLinkParams" [queryParams]="prevPageQuery" >Prev</a>
-    <a [routerLink]="routerLinkParams" [queryParams]="nextPageQuery" >Next</a>
+<nav class='paginator'>
+    <a *ngIf="prevPageQuery.page > 0" [routerLink]="routerLinkParams" [queryParams]="prevPageQuery" >&lt;Prev</a>&nbsp;
+    <a [routerLink]="routerLinkParams" [queryParams]="nextPageQuery" >Next&gt;</a>
 </nav>

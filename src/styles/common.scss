@@ -1,12 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../../node_modules/normalize.css/normalize.css';
+@import '../../node_modules/font-awesome/css/font-awesome.min.css';
 
 @import '_var.scss';
 
 body {
-    font-family: Roboto;
+    font-family: 'Open Sans';
     margin-top: $bodyMarginTop;
     overflow: hidden;
+    background-color: $body-bg;
 }
 
 a {
