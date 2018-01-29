@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../../node_modules/normalize.css/normalize.css';
 @import '../../node_modules/font-awesome/css/font-awesome.min.css';
+// @import '../../node_modules/nord/src/sass/nord.scss';
 
 @import '_var.scss';
 
@@ -13,5 +14,5 @@ body {
 
 a {
     text-decoration: none;
-    color: $theme-color;
+    color: $white;
 }

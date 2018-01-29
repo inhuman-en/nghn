@@ -1,15 +1,5 @@
 @import '../../../styles/_var.scss';
 
-@-webkit-keyframes load8 {
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    100% {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
-    }
-}
 @keyframes load8 {
     0% {
         -webkit-transform: rotate(0deg);
@@ -40,9 +30,9 @@ $paginationHeight: 30px;
     font-size: 10px;
     position: relative;
     text-indent: -9999em;
-    border-top: 0.8em solid lighten($theme-color, 30%);
-    border-right: 0.8em solid lighten($theme-color, 30%);
-    border-bottom: 0.8em solid lighten($theme-color, 30%);
+    border-top: 0.8em solid lighten($theme-color, 20%);
+    border-right: 0.8em solid lighten($theme-color, 20%);
+    border-bottom: 0.8em solid lighten($theme-color, 20%);
     border-left: 0.8em solid #f6f1ff;
     -webkit-transform: translateZ(0);
     -ms-transform: translateZ(0);

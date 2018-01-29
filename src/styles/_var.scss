@@ -1,9 +1,10 @@
 //font
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import 'node_modules/nord/src/sass/nord.scss';
 
 //colors
-$theme-color: #da1e37;
+$theme-color: $nord10;
 $white: #fff;
 $body-bg: #fafafa;
 
-$bodyMarginTop: 50px;
+$bodyMarginTop: 55px;
