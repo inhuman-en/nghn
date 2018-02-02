@@ -30,9 +30,10 @@ $paginationHeight: 30px;
     font-size: 10px;
     position: relative;
     text-indent: -9999em;
-    border-top: 0.8em solid lighten($theme-color, 20%);
-    border-right: 0.8em solid lighten($theme-color, 20%);
-    border-bottom: 0.8em solid lighten($theme-color, 20%);
+    //TODO: how to use css variable here
+    border-top: 0.8em solid lighten(#646464, 40%);
+    border-right: 0.8em solid lighten(#646464, 40%);
+    border-bottom: 0.8em solid lighten(#646464, 40%);
     border-left: 0.8em solid #f6f1ff;
     -webkit-transform: translateZ(0);
     -ms-transform: translateZ(0);

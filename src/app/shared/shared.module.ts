@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { HackerNewsService } from './hacker-news.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PaginatorComponent } from './paginator/paginator.component';
+import { PersistenceManagerService } from './persistence-manager.service';
 
 @NgModule({
   imports: [
@@ -13,6 +14,6 @@ import { PaginatorComponent } from './paginator/paginator.component';
   ],
   declarations: [PaginatorComponent],
   exports: [PaginatorComponent],
-  providers: [HackerNewsService]
+  providers: [HackerNewsService, PersistenceManagerService]
 })
 export class SharedModule { }

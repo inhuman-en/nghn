@@ -6,9 +6,9 @@ header {
     left: 0;
     height: 50px;
     width: 100%;
-    box-shadow: 0px 1px 3px $theme-color;
+    box-shadow: 0px 1px 3px var(--theme-color);
     font-size: 0.8em;
-    background-color: $theme-color;
+    background-color: var(--theme-color);
 
     nav {
         height: 100%;
@@ -30,8 +30,18 @@ header {
                 padding: 0 6px;
                 line-height: 50px;
 
-                &:last-child {
+                &.theme-selector {
+                    color: $white;
+                    line-height: 20px;
                     flex-grow: 1;
+                    justify-content: flex-end;
+
+                    & select {
+                        margin-left: 5px;
+                    }
+                }
+
+                &:last-child {
                     justify-content: flex-end;
                 }
             }

@@ -18,6 +18,12 @@
             <li class="nav-link">
                 <a routerLink="/jobs" >Jobs</a>
             </li>
+            <li class="nav-link theme-selector">
+                Theme:
+                <select (change)="changeTheme($event.target.value)">
+                    <option *ngFor="let theme of themes" [value]="theme.className" [selected]="currentTheme === theme.className">{{theme.name}}</option>
+                </select>
+            </li>
             <li class="nav-link">
                 <a routerLink="/about" >About</a>
             </li>

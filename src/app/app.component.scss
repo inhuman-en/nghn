@@ -1,0 +1,11 @@
+@import '../styles/_var.scss';
+
+:host {
+    &.theme-frost {
+        --theme-color: $frost-color;
+    }
+
+    &.theme-aurora {
+        --theme-color: $aurora-color;
+    }
+}
