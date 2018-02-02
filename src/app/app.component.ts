@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit, ElementRef } from '@angular/core';
 import { PersistenceManagerService } from './shared';
 
 @Component({
@@ -7,10 +7,7 @@ import { PersistenceManagerService } from './shared';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-    @HostBinding('class.theme-frost') themeFrost = true;
-    @HostBinding('class.theme-aurora') themeAurora = false;
-
-    constructor(private storage: PersistenceManagerService) {}
+    constructor(private el: ElementRef,private storage: PersistenceManagerService) {}
 
     ngOnInit() {
         const storedTheme = this.storage.get('color-theme');
@@ -21,7 +18,12 @@ export class AppComponent implements OnInit {
     }
 
     onThemeChanged(theme: string): void {
-        this.themeFrost = theme === 'theme-frost';
-        this.themeAurora = theme === 'theme-aurora';
+        const { classList } = this.el.nativeElement;
+
+        for (const className of classList) {
+            if (className.startsWith('theme')) {
+                classList.replace(className, theme);
+            }
+        }
     }
 }
