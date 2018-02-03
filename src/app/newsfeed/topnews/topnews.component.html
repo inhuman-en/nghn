@@ -3,9 +3,10 @@
         Loading...
     </div>
 
-    <hn-newsitem *ngFor='let item of topNews$ | async' [item]='item'>
-
-    </hn-newsitem>
+    <div class="news-wrap__list" [@appear]="newsDisplayState">
+        <hn-newsitem *ngFor='let item of topNews$ | async' [item]='item'>
+        </hn-newsitem>
+    </div>
 </section>
 
 <footer class='paginator-wrap'>
