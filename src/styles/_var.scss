@@ -1,11 +1,16 @@
 //font
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,500');
 @import 'node_modules/nord/src/sass/nord.scss';
+
+$headerFont: 'Oswald';
 
 //colors
 $frost-color: $nord10;
 $aurora-color: $nord11;
 $white: #fff;
+$gray: #696969;
+$lightgray: #cfcfcf;
 $body-bg: #fafafa;
 
 $bodyMarginTop: 55px;
