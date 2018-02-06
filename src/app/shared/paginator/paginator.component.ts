@@ -17,8 +17,8 @@ export class PaginatorComponent implements OnInit, OnChanges {
     @Input() pagingParam = 'page';
     @Input() currentPage: number;
 
-    prevPageQuery: object;
-    nextPageQuery: object;
+    prevPageQuery: { [key: string]: number; };
+    nextPageQuery: { [key: string]: number; };
     routerLinkParams: any;
 
     constructor() {}
