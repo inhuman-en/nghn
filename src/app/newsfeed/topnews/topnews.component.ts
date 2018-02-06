@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
     trigger,
@@ -10,9 +10,11 @@ import {
 } from '@angular/animations';
 import { HackerNewsService } from '../../shared/index';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/share';
+import 'rxjs/add/operator/combineLatest';
 
 @Component({
     selector: 'hn-topnews',
@@ -37,8 +39,10 @@ import 'rxjs/add/operator/share';
 export class TopnewsComponent implements OnInit {
     currentPage = 1;
     showSpinner = false;
-    topNews$: Observable<any>;
-    page$: Observable<number>;
+    feed$: Observable<any>;
+    subscription$: Subscription;
+
+    feedType: string;
 
     newsDisplayState: string;
 
@@ -46,15 +50,21 @@ export class TopnewsComponent implements OnInit {
         private service: HackerNewsService,
         private route: ActivatedRoute,
         private router: Router
-    ) {}
+    ) {
+        console.log(route);
+    }
 
     ngOnInit() {
         this.subscribeToPageChange();
     }
 
-    private fetchNewsByPage(page: number): void {
-        this.topNews$ = this.service
-            .getNews(page)
+    ngOnDestroy() {
+        this.subscription$.unsubscribe();
+    }
+
+    private fetchFeedByPage(feedType: string, page: number): void {
+        this.feed$ = this.service
+            .getFeed(feedType, page)
             .do(
                 () => this.toggleSpinner(false),
                 () => this.toggleSpinner(false)
@@ -78,12 +88,16 @@ export class TopnewsComponent implements OnInit {
     }
 
     private subscribeToPageChange(): void {
-        this.page$ = this.route.queryParamMap.map(params =>
+        this.subscription$ = this.route.queryParamMap.map(params =>
             parseInt(params.get('page'), 10)
-        );
+        ).combineLatest(this.route.data.map(params =>
+            params.feedType
+        )).subscribe((value: any) => {
+            const [page, feedType] = value;
+console.log(page);
+            this.feedType = feedType;
 
-        this.page$.subscribe((page: number) => {
-            this.fetchNewsByPage(page);
+            this.fetchFeedByPage(feedType, page);
             this.updateCurrentPage(page);
             this.setAppearanceState('hidden');
         });

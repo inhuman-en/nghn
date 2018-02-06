@@ -7,19 +7,13 @@
                 </a>
             </li>
             <li class="nav-link">
-                <a routerLink="/comments" >Comments</a>
+                <a routerLink="/news" [queryParams]="{page: 1}" >News</a>
             </li>
             <li class="nav-link">
-                <a routerLink="/show" >Show</a>
-            </li>
-            <li class="nav-link">
-                <a routerLink="/ask" >Ask</a>
-            </li>
-            <li class="nav-link">
-                <a routerLink="/jobs" >Jobs</a>
+                <a routerLink="/show" [queryParams]="{page: 1}">Show</a>
             </li>
             <li class="nav-link theme-selector">
-                Theme:
+                Theme:&nbsp;
                 <select (change)="changeTheme($event.target.value)">
                     <option *ngFor="let theme of themes" [value]="theme.className" [selected]="currentTheme === theme.className">{{theme.name}}</option>
                 </select>

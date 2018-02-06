@@ -13,4 +13,9 @@ export class HackerNewsService {
           return this.http
             .get(`${this.apiRoot}/news?page=${page}`);
     }
+
+    getFeed(type: string, page: Number): Observable<any> {
+        return this.http
+          .get(`${this.apiRoot}/${type}?page=${page}`);
+  }
 }
