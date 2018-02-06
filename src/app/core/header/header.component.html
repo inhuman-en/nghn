@@ -14,9 +14,10 @@
             </li>
             <li class="nav-link theme-selector">
                 Theme:&nbsp;
-                <select (change)="changeTheme($event.target.value)">
-                    <option *ngFor="let theme of themes" [value]="theme.className" [selected]="currentTheme === theme.className">{{theme.name}}</option>
-                </select>
+                <ng-container *ngFor="let theme of themes" >
+                    <input class="theme-option" [value]="theme.className" (change)="changeTheme($event.target.value)" type="radio" name="hntheme">{{theme.name}}
+                </ng-container>
+
             </li>
             <li class="nav-link">
                 <a routerLink="/about" >About</a>

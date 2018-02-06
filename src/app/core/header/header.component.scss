@@ -35,16 +35,14 @@ header {
 
                 &.theme-selector {
                     color: $white;
-                    line-height: 20px;
+                    line-height: 12px;
                     flex-grow: 1;
                     justify-content: flex-end;
+                    padding-right: 20px;
 
-                    @media screen and (max-width: 768px) {
-                        & select {
-                            color: $white;
-                            margin-left: 5px;
-                            text-decoration: underline;
-                        }
+                    & .theme-option {
+                        margin: 0 5px;
+                        cursor: pointer;
                     }
                 }
 

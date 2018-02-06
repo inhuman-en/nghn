@@ -23,13 +23,13 @@ import 'rxjs/add/operator/combineLatest';
     animations: [
         trigger('appear', [
             state('hidden', style({ opacity: '.1' })),
-            state('visible', style({ opacity: '1'  })),
+            state('visible', style({ opacity: '1' })),
             transition('hidden => visible', [
                 animate(
                     400,
                     keyframes([
-                        style({ opacity: '.1' , offset: 0 }),
-                        style({ opacity: '1' , offset: 1.0 })
+                        style({ opacity: '.1', offset: 0 }),
+                        style({ opacity: '1', offset: 1.0 })
                     ])
                 )
             ])
@@ -50,9 +50,7 @@ export class TopnewsComponent implements OnInit {
         private service: HackerNewsService,
         private route: ActivatedRoute,
         private router: Router
-    ) {
-        console.log(route);
-    }
+    ) {}
 
     ngOnInit() {
         this.subscribeToPageChange();
@@ -88,18 +86,16 @@ export class TopnewsComponent implements OnInit {
     }
 
     private subscribeToPageChange(): void {
-        this.subscription$ = this.route.queryParamMap.map(params =>
-            parseInt(params.get('page'), 10)
-        ).combineLatest(this.route.data.map(params =>
-            params.feedType
-        )).subscribe((value: any) => {
-            const [page, feedType] = value;
-console.log(page);
-            this.feedType = feedType;
+        this.subscription$ = this.route.queryParamMap
+            .map(params => parseInt(params.get('page'), 10))
+            .combineLatest(this.route.data.map(params => params.feedType))
+            .subscribe((value: any) => {
+                const [page, feedType] = value;
+                this.feedType = feedType;
 
-            this.fetchFeedByPage(feedType, page);
-            this.updateCurrentPage(page);
-            this.setAppearanceState('hidden');
-        });
+                this.fetchFeedByPage(feedType, page);
+                this.updateCurrentPage(page);
+                this.setAppearanceState('hidden');
+            });
     }
 }
