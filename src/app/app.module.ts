@@ -5,17 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { NewsFeedModule } from './newsfeed/newsfeed.module';
-import { ShowFeedModule } from './showfeed/showfeed.module';
 
 @NgModule({
     declarations: [AppComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
-        CoreModule,
-        NewsFeedModule,
-        ShowFeedModule
+        CoreModule
     ],
     providers: [],
     bootstrap: [AppComponent]

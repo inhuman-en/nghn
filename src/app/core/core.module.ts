@@ -4,9 +4,15 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HeaderComponent } from './header/header.component';
+import { SharedModule } from '../shared';
 
 @NgModule({
-    imports: [CommonModule, RouterModule, BrowserAnimationsModule],
+    imports: [
+        CommonModule,
+        RouterModule,
+        BrowserAnimationsModule,
+        SharedModule
+    ],
     declarations: [HeaderComponent],
     exports: [HeaderComponent]
 })
