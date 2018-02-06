@@ -8,7 +8,7 @@ import {
     transition,
     keyframes
 } from '@angular/animations';
-import { HackerNewsService } from '../../shared/index';
+import { HackerNewsService } from '../hacker-news.service';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/do';

@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '../shared/index';
 
-import { NewsFeedRoutingModule } from './newsfeed-routing.module';
+import { ShowFeedRoutingModule } from './showfeed-routing.module';
 import { TopnewsComponent, NewsitemComponent } from '../shared/index';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
-    NewsFeedRoutingModule
+    ShowFeedRoutingModule
   ]
 })
-export class NewsFeedModule { }
+export class ShowFeedModule { }

@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { NewsfeedModule } from './newsfeed/newsfeed.module';
-import { SharedModule } from './shared/shared.module';
+import { NewsFeedModule } from './newsfeed/newsfeed.module';
+import { ShowFeedModule } from './showfeed/showfeed.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -14,8 +14,8 @@ import { SharedModule } from './shared/shared.module';
         BrowserModule,
         AppRoutingModule,
         CoreModule,
-        NewsfeedModule,
-        SharedModule
+        NewsFeedModule,
+        ShowFeedModule
     ],
     providers: [],
     bootstrap: [AppComponent]
