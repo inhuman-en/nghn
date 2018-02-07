@@ -1,3 +1,6 @@
+const ENV = process.env.NODE_ENV;
+const isProd = ENV === 'production';
+
 const fs = require('fs');
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -140,6 +143,111 @@ const postcssPlugins = function(loader) {
         autoprefixer()
     ].concat(minimizeCss ? [cssnano(minimizeOptions)] : []);
 };
+
+const plugins = [
+    new NoEmitOnErrorsPlugin(),
+    new CopyWebpackPlugin(
+        [
+            {
+                context: 'src',
+                to: '',
+                from: {
+                    glob: '/Users/eugenenor/projects/nghn/src/assets/**/*',
+                    dot: true
+                }
+            },
+            {
+                context: 'src',
+                to: '',
+                from: {
+                    glob: '/Users/eugenenor/projects/nghn/src/favicon.ico',
+                    dot: true
+                }
+            }
+        ],
+        {
+            ignore: ['.gitkeep', '**/.DS_Store', '**/Thumbs.db'],
+            debug: 'warning'
+        }
+    ),
+    new ProgressPlugin(),
+    new CircularDependencyPlugin({
+        exclude: /(\\|\/)node_modules(\\|\/)/,
+        failOnError: false,
+        onDetected: false,
+        cwd: '/Users/eugenenor/projects/nghn'
+    }),
+    new NamedLazyChunksWebpackPlugin(),
+    new HtmlWebpackPlugin({
+        template: './src/index.html',
+        filename: './index.html',
+        hash: false,
+        inject: true,
+        compile: true,
+        favicon: false,
+        minify: false,
+        cache: true,
+        showErrors: true,
+        chunks: 'all',
+        excludeChunks: [],
+        title: 'Webpack App',
+        xhtml: true,
+        chunksSortMode: function sort(left, right) {
+            let leftIndex = entryPoints.indexOf(left.names[0]);
+            let rightindex = entryPoints.indexOf(right.names[0]);
+            if (leftIndex > rightindex) {
+                return 1;
+            } else if (leftIndex < rightindex) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+    }),
+    new BaseHrefWebpackPlugin({}),
+    new CommonsChunkPlugin({
+        name: ['inline'],
+        minChunks: null
+    }),
+    new CommonsChunkPlugin({
+        name: ['vendor'],
+        minChunks: module => {
+            return (
+                module.resource &&
+                (module.resource.startsWith(nodeModules) ||
+                    module.resource.startsWith(genDirNodeModules) ||
+                    module.resource.startsWith(realNodeModules))
+            );
+        },
+        chunks: ['main']
+    }),
+    new CommonsChunkPlugin({
+        name: ['main'],
+        minChunks: 2,
+        async: 'common'
+    }),
+    new NamedModulesPlugin({}),
+    new AngularCompilerPlugin({
+        mainPath: 'main.ts',
+        platform: 0,
+        hostReplacementPaths: {
+            'environments/environment.ts': isProd ? 'environments/environment.prod.ts' : 'environments/environment.ts'
+        },
+        sourceMap: !isProd,
+        tsConfigPath: 'src/tsconfig.app.json',
+        skipCodeGeneration: true,
+        compilerOptions: {}
+    })
+];
+
+if (!isProd) {
+    plugins.push(new SourceMapDevToolPlugin({
+        filename: '[file].map[query]',
+        moduleFilenameTemplate: '[resource-path]',
+        fallbackModuleFilenameTemplate: '[resource-path]?[hash]',
+        sourceRoot: 'webpack:///'
+    }));
+}
 
 module.exports = {
     resolve: {
@@ -410,107 +518,7 @@ module.exports = {
             }
         ]
     },
-    plugins: [
-        new NoEmitOnErrorsPlugin(),
-        new CopyWebpackPlugin(
-            [
-                {
-                    context: 'src',
-                    to: '',
-                    from: {
-                        glob: '/Users/eugenenor/projects/nghn/src/assets/**/*',
-                        dot: true
-                    }
-                },
-                {
-                    context: 'src',
-                    to: '',
-                    from: {
-                        glob: '/Users/eugenenor/projects/nghn/src/favicon.ico',
-                        dot: true
-                    }
-                }
-            ],
-            {
-                ignore: ['.gitkeep', '**/.DS_Store', '**/Thumbs.db'],
-                debug: 'warning'
-            }
-        ),
-        new ProgressPlugin(),
-        new CircularDependencyPlugin({
-            exclude: /(\\|\/)node_modules(\\|\/)/,
-            failOnError: false,
-            onDetected: false,
-            cwd: '/Users/eugenenor/projects/nghn'
-        }),
-        new NamedLazyChunksWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            template: './src/index.html',
-            filename: './index.html',
-            hash: false,
-            inject: true,
-            compile: true,
-            favicon: false,
-            minify: false,
-            cache: true,
-            showErrors: true,
-            chunks: 'all',
-            excludeChunks: [],
-            title: 'Webpack App',
-            xhtml: true,
-            chunksSortMode: function sort(left, right) {
-                let leftIndex = entryPoints.indexOf(left.names[0]);
-                let rightindex = entryPoints.indexOf(right.names[0]);
-                if (leftIndex > rightindex) {
-                    return 1;
-                } else if (leftIndex < rightindex) {
-                    return -1;
-                } else {
-                    return 0;
-                }
-            }
-        }),
-        new BaseHrefWebpackPlugin({}),
-        new CommonsChunkPlugin({
-            name: ['inline'],
-            minChunks: null
-        }),
-        new CommonsChunkPlugin({
-            name: ['vendor'],
-            minChunks: module => {
-                return (
-                    module.resource &&
-                    (module.resource.startsWith(nodeModules) ||
-                        module.resource.startsWith(genDirNodeModules) ||
-                        module.resource.startsWith(realNodeModules))
-                );
-            },
-            chunks: ['main']
-        }),
-        new SourceMapDevToolPlugin({
-            filename: '[file].map[query]',
-            moduleFilenameTemplate: '[resource-path]',
-            fallbackModuleFilenameTemplate: '[resource-path]?[hash]',
-            sourceRoot: 'webpack:///'
-        }),
-        new CommonsChunkPlugin({
-            name: ['main'],
-            minChunks: 2,
-            async: 'common'
-        }),
-        new NamedModulesPlugin({}),
-        new AngularCompilerPlugin({
-            mainPath: 'main.ts',
-            platform: 0,
-            hostReplacementPaths: {
-                'environments/environment.ts': 'environments/environment.ts'
-            },
-            sourceMap: true,
-            tsConfigPath: 'src/tsconfig.app.json',
-            skipCodeGeneration: true,
-            compilerOptions: {}
-        })
-    ],
+    plugins: plugins,
     node: {
         fs: 'empty',
         global: true,
