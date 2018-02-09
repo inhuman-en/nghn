@@ -1,5 +1,6 @@
 const ENV = process.env.NODE_ENV;
 const isProd = ENV === 'production';
+// const isProd = true;
 
 const fs = require('fs');
 const path = require('path');
@@ -12,6 +13,9 @@ const autoprefixer = require('autoprefixer');
 const postcssUrl = require('postcss-url');
 const cssnano = require('cssnano');
 const postcssImports = require('postcss-import');
+const CleanPlugin = require('clean-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const {
     NoEmitOnErrorsPlugin,
@@ -36,7 +40,6 @@ const genDirNodeModules = path.join(
 const entryPoints = [
     'inline',
     'polyfills',
-    'sw-register',
     'styles',
     'vendor',
     'main'
@@ -190,7 +193,7 @@ const plugins = [
         showErrors: true,
         chunks: 'all',
         excludeChunks: [],
-        title: 'Webpack App',
+        title: 'NGHN',
         xhtml: true,
         chunksSortMode: function sort(left, right) {
             let leftIndex = entryPoints.indexOf(left.names[0]);
@@ -237,6 +240,11 @@ const plugins = [
         tsConfigPath: 'src/tsconfig.app.json',
         skipCodeGeneration: true,
         compilerOptions: {}
+    }),
+    new CleanPlugin(['dist']),
+    new UglifyJsPlugin({
+        exclude: /\sw.js$/,
+        parallel: true
     })
 ];
 
@@ -268,7 +276,7 @@ module.exports = {
     },
     output: {
         path: path.join(process.cwd(), 'dist'),
-        filename: '[name].bundle.js',
+        filename: '[name].bundle.[chunkhash].js',
         chunkFilename: '[id].chunk.js',
         crossOriginLoading: false
     },
@@ -347,63 +355,6 @@ module.exports = {
                 ]
             },
             {
-                exclude: [path.join(process.cwd(), 'src/styles/common.scss')],
-                test: /\.less$/,
-                use: [
-                    'exports-loader?module.exports.toString()',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: false,
-                            import: false
-                        }
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            ident: 'postcss',
-                            plugins: postcssPlugins,
-                            sourceMap: false
-                        }
-                    },
-                    {
-                        loader: 'less-loader',
-                        options: {
-                            sourceMap: false
-                        }
-                    }
-                ]
-            },
-            {
-                exclude: [path.join(process.cwd(), 'src/styles/common.scss')],
-                test: /\.styl$/,
-                use: [
-                    'exports-loader?module.exports.toString()',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: false,
-                            import: false
-                        }
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            ident: 'postcss',
-                            plugins: postcssPlugins,
-                            sourceMap: false
-                        }
-                    },
-                    {
-                        loader: 'stylus-loader',
-                        options: {
-                            sourceMap: false,
-                            paths: []
-                        }
-                    }
-                ]
-            },
-            {
                 include: [path.join(process.cwd(), 'src/styles/common.scss')],
                 test: /\.css$/,
                 use: [
@@ -451,63 +402,6 @@ module.exports = {
                             sourceMap: false,
                             precision: 8,
                             includePaths: []
-                        }
-                    }
-                ]
-            },
-            {
-                include: [path.join(process.cwd(), 'src/styles/common.scss')],
-                test: /\.less$/,
-                use: [
-                    'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: false,
-                            import: false
-                        }
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            ident: 'postcss',
-                            plugins: postcssPlugins,
-                            sourceMap: false
-                        }
-                    },
-                    {
-                        loader: 'less-loader',
-                        options: {
-                            sourceMap: false
-                        }
-                    }
-                ]
-            },
-            {
-                include: [path.join(process.cwd(), 'src/styles/common.scss')],
-                test: /\.styl$/,
-                use: [
-                    'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: false,
-                            import: false
-                        }
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            ident: 'postcss',
-                            plugins: postcssPlugins,
-                            sourceMap: false
-                        }
-                    },
-                    {
-                        loader: 'stylus-loader',
-                        options: {
-                            sourceMap: false,
-                            paths: []
                         }
                     }
                 ]
