@@ -40,7 +40,6 @@ const genDirNodeModules = path.join(
 const entryPoints = [
     'inline',
     'polyfills',
-    'styles',
     'vendor',
     'main'
 ];
@@ -272,8 +271,7 @@ module.exports = {
     },
     entry: {
         main: ['./src/main.ts'],
-        polyfills: ['./src/polyfills.ts'],
-        styles: ['./src/styles/common.scss']
+        polyfills: ['./src/polyfills.ts']
     },
     output: {
         path: path.join(process.cwd(), 'dist'),
