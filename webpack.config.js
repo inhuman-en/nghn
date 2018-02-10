@@ -245,7 +245,8 @@ const plugins = [
     new UglifyJsPlugin({
         exclude: /\sw.js$/,
         parallel: true
-    })
+    }),
+    new ExtractTextPlugin('styles.[chunkhash].css')
 ];
 
 if (!isProd) {
@@ -357,8 +358,7 @@ module.exports = {
             {
                 include: [path.join(process.cwd(), 'src/styles/common.scss')],
                 test: /\.css$/,
-                use: [
-                    'style-loader',
+                use: ExtractTextPlugin.extract([
                     {
                         loader: 'css-loader',
                         options: {
@@ -374,13 +374,12 @@ module.exports = {
                             sourceMap: false
                         }
                     }
-                ]
+                ])
             },
             {
                 include: [path.join(process.cwd(), 'src/styles/common.scss')],
                 test: /\.scss$|\.sass$/,
-                use: [
-                    'style-loader',
+                use: ExtractTextPlugin.extract([
                     {
                         loader: 'css-loader',
                         options: {
@@ -404,7 +403,7 @@ module.exports = {
                             includePaths: []
                         }
                     }
-                ]
+                ])
             },
             {
                 test: /\.ts$/,
