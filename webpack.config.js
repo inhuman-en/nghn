@@ -165,6 +165,14 @@ const plugins = [
                     glob: '/Users/eugenenor/projects/nghn/src/favicon.ico',
                     dot: true
                 }
+            },
+            {
+                context: 'src',
+                to: '',
+                from: {
+                    glob: '/Users/eugenenor/projects/nghn/src/sw.js',
+                    dot: true
+                }
             }
         ],
         {
