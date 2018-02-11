@@ -7,10 +7,7 @@
         "start": "webpack-dev-server --port=4200",
         "build": "webpack",
         "test": "karma start ./karma.conf.js",
-        "lint": "ng lint",
-        "e2e": "protractor ./protractor.conf.js",
-        "pree2e":
-            "webdriver-manager update --standalone false --gecko false --quiet"
+        "lint": "ng lint"
     },
     "private": true,
     "dependencies": {
@@ -64,7 +61,6 @@
         "postcss-import": "^11.0.0",
         "postcss-loader": "^2.0.10",
         "postcss-url": "^7.1.2",
-        "protractor": "~5.1.2",
         "raw-loader": "^0.5.1",
         "sass-loader": "^6.0.6",
         "script-ext-html-webpack-plugin": "^1.8.8",
