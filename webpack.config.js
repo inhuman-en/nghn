@@ -1,3 +1,4 @@
+// TODO: refactor and split into env-based files
 const ENV = process.env.NODE_ENV;
 const isProd = ENV === 'production';
 // const isProd = true;
@@ -16,7 +17,9 @@ const postcssImports = require('postcss-import');
 const CleanPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
+const BrotliPlugin = require('brotli-webpack-plugin');
 const {
     NoEmitOnErrorsPlugin,
     SourceMapDevToolPlugin,
@@ -37,12 +40,7 @@ const genDirNodeModules = path.join(
     '$$_gendir',
     'node_modules'
 );
-const entryPoints = [
-    'inline',
-    'polyfills',
-    'vendor',
-    'main'
-];
+const entryPoints = ['inline', 'polyfills', 'vendor', 'main'];
 const minimizeCss = false;
 const baseHref = '';
 const deployUrl = '';
@@ -241,7 +239,9 @@ const plugins = [
         mainPath: 'main.ts',
         platform: 0,
         hostReplacementPaths: {
-            'environments/environment.ts': isProd ? 'environments/environment.prod.ts' : 'environments/environment.ts'
+            'environments/environment.ts': isProd
+                ? 'environments/environment.prod.ts'
+                : 'environments/environment.ts'
         },
         sourceMap: !isProd,
         tsConfigPath: 'src/tsconfig.app.json',
@@ -254,15 +254,34 @@ const plugins = [
         parallel: true
     }),
     new ExtractTextPlugin('styles.[chunkhash].css')
+    ,
+    new ScriptExtHtmlWebpackPlugin({
+        defaultAttribute: 'defer'
+    }),
+    new CompressionPlugin({
+        asset: '[path].gz[query]',
+        algorithm: 'gzip',
+        test: /\.(js|css|html|svg|ttf|eot|woff|woff2)$/,
+        threshold: 10240,
+        minRatio: 0.8
+    }),
+    new BrotliPlugin({
+        asset: '[path].br[query]',
+        test: /\.(js|css|html|svg|ttf|eot|woff|woff2)$/,
+        threshold: 10240,
+        minRatio: 0.8
+    })
 ];
 
 if (!isProd) {
-    plugins.push(new SourceMapDevToolPlugin({
-        filename: '[file].map[query]',
-        moduleFilenameTemplate: '[resource-path]',
-        fallbackModuleFilenameTemplate: '[resource-path]?[hash]',
-        sourceRoot: 'webpack:///'
-    }));
+    plugins.push(
+        new SourceMapDevToolPlugin({
+            filename: '[file].map[query]',
+            moduleFilenameTemplate: '[resource-path]',
+            fallbackModuleFilenameTemplate: '[resource-path]?[hash]',
+            sourceRoot: 'webpack:///'
+        })
+    );
 }
 
 module.exports = {
