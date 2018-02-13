@@ -1,4 +1,5 @@
 // TODO: refactor and split into env-based files
+
 const ENV = process.env.NODE_ENV;
 const isProd = ENV === 'production' || ENV === 'test';
 // const isProd = true;
