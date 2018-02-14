@@ -1,8 +1,8 @@
 // TODO: refactor and split into env-based files
 
 const ENV = process.env.NODE_ENV;
-const isProd = ENV === 'production' || ENV === 'test';
-// const isProd = true;
+// const isProd = ENV === 'production' || ENV === 'test';
+const isProd = true;
 
 const fs = require('fs');
 const path = require('path');
@@ -159,7 +159,7 @@ const plugins = [
             },
             {
                 context: 'src',
-                to: '',
+                to: './',
                 from: {
                     glob: '/Users/eugenenor/projects/nghn/src/favicon.ico',
                     dot: true
@@ -167,7 +167,7 @@ const plugins = [
             },
             {
                 context: 'src',
-                to: '',
+                to: './',
                 from: {
                     glob: '/Users/eugenenor/projects/nghn/src/sw.js',
                     dot: true
@@ -175,7 +175,7 @@ const plugins = [
             },
             {
                 context: 'src',
-                to: '',
+                to: './',
                 from: {
                     glob: '/Users/eugenenor/projects/nghn/src/manifest.json',
                     dot: true
