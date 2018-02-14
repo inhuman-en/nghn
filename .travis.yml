@@ -13,6 +13,7 @@ before_install:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 deploy:
+    skip_cleanup: true
     provider: firebase
     token:
       secure: "1okzx2sKHgsEhtkhKOhmHQ+7oOojgddhDhzSW1X3qzzxdBVsZyvNaehsVOCH4AiJtjf6PA+Wp3zn+KW5qOLLpHz7CDlWklRzhk9DtcWT3U1IiwvOH2oxikYy4gj4ZD2L5B7fNmI+EWAmhfx387pI/2jIlfcbFi4G9/v9jbgpizRnjhrzBl2440o/BtfaOgDfkjC2Skat/aSQYzmhxuP8/HP8kHoz+ggwDi68Zw1hi0FMG090LV2Rgz45pbE7pk4H/Xv7fZLI8JtrBee+78U7jrqlyv+mfz6I1IlH8VF4qevbHJ9jeCUcQs9b+NRL+NEq7zj9/c0wiqPU0ZUirk3DsYSlV3utDEVO4KLYEdgbf+uMa17ibqyq/JqETn8G9FAnKSOdtx1NnAlrwbRKJPNsmslDS34Z1dLwDYBrzsRm3QEqjs6jPSJdssAcEY3eZn1raG1ny1TR1EvNrpiFIGAyFByQzMSz4elsvfIxSj0RJT8tKHfN5KzNAHwfg7xiFlmlb4CcdwEf2/MwRqwDpAISiflDZ69XhoJe/4NarNLVrKNpdSNzSDccN5UcAQ+SkCpHIv2Oo4LPd5FJeUT2qbdoDaZzk0AMXZhsOyFmp8DY8P+TRDhcIilAcmDlCRsPkXbq7dQ8rWQ24fHjB9vSxWUhoOViTsXsHM+K9XJucgm9otI="
