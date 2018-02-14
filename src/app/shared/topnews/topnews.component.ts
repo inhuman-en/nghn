@@ -26,7 +26,7 @@ import 'rxjs/add/operator/combineLatest';
             state('visible', style({ opacity: '1' })),
             transition('hidden => visible', [
                 animate(
-                    400,
+                    200,
                     keyframes([
                         style({ opacity: '.1', offset: 0 }),
                         style({ opacity: '1', offset: 1.0 })
@@ -36,7 +36,7 @@ import 'rxjs/add/operator/combineLatest';
         ])
     ]
 })
-export class TopnewsComponent implements OnInit {
+export class TopnewsComponent implements OnInit, OnDestroy {
     currentPage = 1;
     showSpinner = false;
     feed$: Observable<any>;

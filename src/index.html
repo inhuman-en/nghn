@@ -1,15 +1,46 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Nghn</title>
-  <base href="/">
+    <meta charset="utf-8">
+    <title>Nghn</title>
+    <base href="/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="preconnect" href="https://node-hnapi.herokuapp.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .nojs,
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            text-align: center;
+            height: 100vh;
+            width: 100%;
+            padding-top: 30%;
+            background-color: #fafafa;
+        }
+        .loader {
+            z-index: -1;
+        }
+        .nojs {
+            z-index: 10000;
+        }
+    </style>
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://node-hnapi.herokuapp.com">
+
 </head>
+
 <body>
-  <app-root class="theme-frost"></app-root>
+    <app-root class="theme-frost"></app-root>
+    <noscript>
+        <h2 class="nojs">
+            Enable javaScript in order to view the application
+        </h2>
+    </noscript>
+    <h3 class="loader">
+        Loading app...
+    </h3>
 </body>
+
 </html>

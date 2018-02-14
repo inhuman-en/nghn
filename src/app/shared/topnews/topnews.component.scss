@@ -13,8 +13,14 @@
 
 $paginationHeight: 30px;
 
+:host {
+    height: calc(100vh - #{$bodyMarginTop});
+    background-color: inherit;
+}
+
 .news-wrap {
     overflow-y: auto;
+    background-color: inherit;
     height: calc(100vh - #{$bodyMarginTop} - #{$paginationHeight});
 }
 

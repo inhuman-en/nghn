@@ -172,6 +172,14 @@ const plugins = [
                     glob: '/Users/eugenenor/projects/nghn/src/sw.js',
                     dot: true
                 }
+            },
+            {
+                context: 'src',
+                to: '',
+                from: {
+                    glob: '/Users/eugenenor/projects/nghn/src/manifest.webmanifest',
+                    dot: true
+                }
             }
         ],
         {
@@ -389,7 +397,8 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             sourceMap: false,
-                            import: false
+                            import: false,
+                            minimize: true
                         }
                     },
                     {
@@ -410,7 +419,8 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             sourceMap: false,
-                            import: false
+                            import: false,
+                            minimize: true
                         }
                     },
                     {
