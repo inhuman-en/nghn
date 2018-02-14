@@ -177,7 +177,7 @@ const plugins = [
                 context: 'src',
                 to: '',
                 from: {
-                    glob: '/Users/eugenenor/projects/nghn/src/manifest.webmanifest',
+                    glob: '/Users/eugenenor/projects/nghn/src/manifest.json',
                     dot: true
                 }
             }
