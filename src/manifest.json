@@ -4,9 +4,10 @@
     "description": "PWA playground",
     "dir": "ltr",
     "lang": "en-US",
-    "start_url": ".",
+    "start_url": "/news?page=1",
     "display": "fullscreen",
     "background_color": "#fafafa",
+    "theme_color": "#fafafa",
     "orientation": "portrait-primary",
     "icons": [
         {
