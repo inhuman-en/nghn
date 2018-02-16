@@ -32,6 +32,8 @@ const {
 } = require('@angular/cli/plugins/webpack');
 const { CommonsChunkPlugin } = require('webpack').optimize;
 const { AngularCompilerPlugin } = require('@ngtools/webpack');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 const nodeModules = path.join(process.cwd(), 'node_modules');
 const realNodeModules = fs.realpathSync(nodeModules);
@@ -267,6 +269,7 @@ const plugins = [
     new ScriptExtHtmlWebpackPlugin({
         defaultAttribute: 'defer'
     }),
+    new FaviconsWebpackPlugin('assets/angular512.png'),
     new CompressionPlugin({
         asset: '[path].gz[query]',
         algorithm: 'gzip',
@@ -291,6 +294,10 @@ if (!isProd) {
             sourceRoot: 'webpack:///'
         })
     );
+
+    plugins.push(
+        new BundleAnalyzerPlugin()
+    )
 }
 
 module.exports = {
