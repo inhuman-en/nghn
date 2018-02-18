@@ -4,7 +4,7 @@
 @import '_var.scss';
 
 body {
-    font-family: 'Open Sans';
+    font-family: $bodyFont;
     margin-top: $bodyMarginTop;
     overflow: hidden;
     background-color: $body-bg;

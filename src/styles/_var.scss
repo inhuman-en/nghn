@@ -1,9 +1,7 @@
-//font
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
-@import url('https://fonts.googleapis.com/css?family=Oswald:400,500');
 @import 'node_modules/nord/src/sass/nord.scss';
 
-$headerFont: 'Oswald';
+$headerFont: 'Oswald', Arial, sans-serif;
+$bodyFont: 'Open Sans', Helvetica, sans-serif;
 
 //colors
 $frost-color: $nord10;
