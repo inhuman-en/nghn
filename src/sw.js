@@ -6,6 +6,15 @@ workbox.setConfig({
     debug: true
 });
 
+// workbox.routing.registerNavigationRoute('/index.html');
+
+// //html
+// workbox.routing.registerRoute(
+//     /.*\.html/,
+//     workbox.strategies.staleWhileRevalidate({
+//         cacheName: 'html-cache'
+//     })
+// );
 //scripts
 workbox.routing.registerRoute(
     new RegExp('.*.js'),

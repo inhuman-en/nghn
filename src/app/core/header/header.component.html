@@ -15,7 +15,7 @@
             <li class="nav-link theme-selector">
                 Theme:&nbsp;
                 <ng-container *ngFor="let theme of themes" >
-                    <input class="theme-option" [value]="theme.className" (change)="changeTheme($event.target.value)" type="radio" name="hntheme">{{theme.name}}
+                    <input class="theme-option" [value]="theme.className" [checked]="theme.active" (change)="changeTheme($event.target.value)" type="radio" name="hntheme">{{theme.name}}
                 </ng-container>
 
             </li>
