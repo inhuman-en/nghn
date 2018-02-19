@@ -15,6 +15,7 @@ workbox.setConfig({
 //         cacheName: 'html-cache'
 //     })
 // );
+
 //scripts
 workbox.routing.registerRoute(
     new RegExp('.*.js'),
