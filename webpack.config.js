@@ -161,25 +161,41 @@ const plugins = [
             },
             {
                 context: 'src',
-                to: './',
+                to: '.',
                 from: {
-                    glob: '/Users/eugenenor/projects/nghn/src/favicon.ico',
+                    glob: 'favicon.ico',
                     dot: true
                 }
             },
             {
                 context: 'src',
-                to: './',
+                to: '.',
                 from: {
-                    glob: '/Users/eugenenor/projects/nghn/src/sw.js',
+                    glob: 'sw.js',
                     dot: true
                 }
             },
             {
                 context: 'src',
-                to: './',
+                to: '.',
                 from: {
-                    glob: '/Users/eugenenor/projects/nghn/src/manifest.json',
+                    glob: 'manifest.json',
+                    dot: true
+                }
+            },
+            {
+                context: path.join(nodeModules, 'font-awesome/css'),
+                to: '.',
+                from: {
+                    glob: 'font-awesome.min.css',
+                    dot: true
+                }
+            },
+            {
+                context: path.join(nodeModules, 'font-awesome'),
+                to: '.',
+                from: {
+                    glob: 'fonts',
                     dot: true
                 }
             }
@@ -264,8 +280,7 @@ const plugins = [
         exclude: /\sw.js$/,
         parallel: true
     }),
-    new ExtractTextPlugin('styles.[chunkhash].css')
-    ,
+    new ExtractTextPlugin('styles.[chunkhash].css'),
     new ScriptExtHtmlWebpackPlugin({
         defaultAttribute: 'defer'
     }),
