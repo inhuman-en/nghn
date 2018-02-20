@@ -6,15 +6,11 @@ workbox.setConfig({
     debug: true
 });
 
-// workbox.routing.registerNavigationRoute('/index.html');
+workbox.routing.registerNavigationRoute('/index.html');
 
-// //html
-// workbox.routing.registerRoute(
-//     /.*\.html/,
-//     workbox.strategies.staleWhileRevalidate({
-//         cacheName: 'html-cache'
-//     })
-// );
+workbox.precaching.precacheAndRoute([
+    { url: '/index.html', revision: '1' },
+]);
 
 //scripts
 workbox.routing.registerRoute(
