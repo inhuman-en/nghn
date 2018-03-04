@@ -18,7 +18,7 @@
 ### Lighthouse:
 
 <img src="https://i.imgur.com/8soDLzU.png" width="500">
----
+
 ### Themes:
 <img src="https://i.imgur.com/B8PdvC8.png" width="250">
 <img src="https://i.imgur.com/YqxHMry.png" width="250">
