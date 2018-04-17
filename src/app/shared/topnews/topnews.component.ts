@@ -19,22 +19,7 @@ import 'rxjs/add/operator/combineLatest';
 @Component({
     selector: 'hn-topnews',
     templateUrl: './topnews.component.html',
-    styleUrls: ['./topnews.component.scss'],
-    animations: [
-        trigger('appear', [
-            state('hidden', style({ opacity: '.1' })),
-            state('visible', style({ opacity: '1' })),
-            transition('hidden => visible', [
-                animate(
-                    200,
-                    keyframes([
-                        style({ opacity: '.1', offset: 0 }),
-                        style({ opacity: '1', offset: 1.0 })
-                    ])
-                )
-            ])
-        ])
-    ]
+    styleUrls: ['./topnews.component.scss']
 })
 export class TopnewsComponent implements OnInit, OnDestroy {
     currentPage = 1;
@@ -43,8 +28,6 @@ export class TopnewsComponent implements OnInit, OnDestroy {
     subscription$: Subscription;
 
     feedType: string;
-
-    newsDisplayState: string;
 
     constructor(
         private service: HackerNewsService,
@@ -67,14 +50,9 @@ export class TopnewsComponent implements OnInit, OnDestroy {
                 () => this.toggleSpinner(false),
                 () => this.toggleSpinner(false)
             )
-            .do(() => this.setAppearanceState('visible'))
             .share();
 
         this.showSpinner = true;
-    }
-
-    private setAppearanceState(newState: string) {
-        this.newsDisplayState = newState;
     }
 
     private toggleSpinner(on: boolean) {
@@ -95,7 +73,6 @@ export class TopnewsComponent implements OnInit, OnDestroy {
 
                 this.fetchFeedByPage(feedType, page);
                 this.updateCurrentPage(page);
-                this.setAppearanceState('hidden');
             });
     }
 }
