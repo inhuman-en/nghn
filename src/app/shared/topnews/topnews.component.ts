@@ -9,9 +9,9 @@ import {
     keyframes
 } from '@angular/animations';
 import { HackerNewsService } from '../hacker-news.service';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/do';
+import { Observable, Subscription } from 'rxjs';
+// import { map, share, combineLatest} from 'rxjs/operators';
+import 'rxjs-compat/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/share';
 import 'rxjs/add/operator/combineLatest';
