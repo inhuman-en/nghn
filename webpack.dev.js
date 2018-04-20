@@ -9,14 +9,6 @@ module.exports = webpackMerge(commonConfig, {
         main: ['./src/main.ts'],
         polyfills: ['./src/polyfills.ts']
     },
-    module: {
-        rules: [
-            {
-                test: /\.ts$/,
-                loader: '@ngtools/webpack'
-            }
-        ]
-    },
     plugins: [
         new AngularCompilerPlugin({
             mainPath: 'main.ts',

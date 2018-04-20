@@ -9,34 +9,23 @@ const BrotliPlugin = require('brotli-webpack-plugin');
 
 module.exports = webpackMerge(commonConfig, {
     entry: {
-        main: ['./src/main.aot.ts'],
+        main: ['./src/main.ts'],
         polyfills: ['./src/polyfills.ts']
-    },
-    module: {
-        rules: [
-            {
-                test: /\.ts$/,
-                loader: '@ngtools/webpack'
-            }
-        ]
     },
     plugins: [
         new AngularCompilerPlugin({
+            mainPath: 'main.ts',
+            sourceMap: false,
             platform: 0,
+            tsConfigPath: 'src/tsconfig.app.json',
+            compilerOptions: {},
             hostReplacementPaths: {
                 'environments/environment.ts': 'environments/environment.prod.ts'
             },
-            sourceMap: false,
-            mainPath: 'main.ts',
-            tsConfigPath: 'src/tsconfig.app.json',
-            compilerOptions: {}
         }),
         new UglifyJsPlugin({
             exclude: /\sw.js$/,
-            parallel: true,
-            mangle: {
-                keep_fnames: true
-            }
+            parallel: true
         }),
         new CompressionPlugin({
             asset: '[path].gz[query]',

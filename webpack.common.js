@@ -44,6 +44,10 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.ts$/,
+                loader: '@ngtools/webpack'
+            },
+            {
                 test: /\.html$/,
                 loader: 'raw-loader'
             },
@@ -170,11 +174,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {
-                ENV: JSON.stringify(process.env.NODE_ENV)
-            }
-        }),
+        new CleanPlugin(['dist']),
         new webpack.ContextReplacementPlugin(
             // The (\\|\/) piece accounts for path separators in *nix and Windows
             /angular(\\|\/)core(\\|\/)@angular/,
@@ -295,7 +295,6 @@ module.exports = {
             async: 'common'
         }),
         new NamedModulesPlugin({}),
-        new CleanPlugin(['dist']),
         new ExtractTextPlugin('styles.[chunkhash].css'),
         new ScriptExtHtmlWebpackPlugin({
             defaultAttribute: 'defer'
