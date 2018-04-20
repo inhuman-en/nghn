@@ -22,14 +22,13 @@ module.exports = webpackMerge(commonConfig, {
     },
     plugins: [
         new AngularCompilerPlugin({
-            mainPath: 'main.ts',
             platform: 0,
             hostReplacementPaths: {
                 'environments/environment.ts': 'environments/environment.prod.ts'
             },
             sourceMap: false,
+            mainPath: 'main.ts',
             tsConfigPath: 'src/tsconfig.app.json',
-            skipCodeGeneration: true,
             compilerOptions: {}
         }),
         new UglifyJsPlugin({

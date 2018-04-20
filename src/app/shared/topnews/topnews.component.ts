@@ -1,13 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {
-    trigger,
-    state,
-    style,
-    animate,
-    transition,
-    keyframes
-} from '@angular/animations';
 import { HackerNewsService } from '../hacker-news.service';
 import { Observable, Subscription } from 'rxjs';
 // import { map, share, combineLatest} from 'rxjs/operators';
@@ -47,12 +39,11 @@ export class TopnewsComponent implements OnInit, OnDestroy {
         this.feed$ = this.service
             .getFeed(feedType, page)
             .do(
-                () => this.toggleSpinner(false),
                 () => this.toggleSpinner(false)
             )
             .share();
 
-        this.showSpinner = true;
+        this.toggleSpinner(true)
     }
 
     private toggleSpinner(on: boolean) {

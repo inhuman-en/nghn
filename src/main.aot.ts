@@ -1,15 +1,15 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowser } from '@angular/platform-browser';
+// import { enableProdMode } from '@angular/core';
+// import { platformBrowser } from '@angular/platform-browser';
 
-import { AppModuleNgFactory } from './app/app.module.ngfactory';
+// import { AppModuleNgFactory } from './app/app.module.ngfactory';
 
-import registerServiceWorker from './register-service-worker';
+// import registerServiceWorker from './register-service-worker';
 
-import './styles/common.scss';
+// import './styles/common.scss';
 
-enableProdMode();
-registerServiceWorker();
+// enableProdMode();
+// registerServiceWorker();
 
-platformBrowser()
-    .bootstrapModuleFactory(AppModuleNgFactory)
-    .catch(err => console.log(err));
+// platformBrowser()
+//     .bootstrapModuleFactory(AppModuleNgFactory)
+//     .catch(err => console.log(err));

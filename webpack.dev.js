@@ -2,28 +2,28 @@ const webpackMerge = require('webpack-merge');
 const commonConfig = require('./webpack.common.js');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { SourceMapDevToolPlugin } = require('webpack');
+const { AngularCompilerPlugin } = require('@ngtools/webpack');
 
 module.exports = webpackMerge(commonConfig, {
     entry: {
         main: ['./src/main.ts'],
-        polyfills: ['./src/polyfills.ts'],
-        exclude: ['./src/main.aot.ts']
+        polyfills: ['./src/polyfills.ts']
     },
     module: {
         rules: [
             {
                 test: /\.ts$/,
-                loaders: [
-                    {
-                        loader: 'awesome-typescript-loader',
-                        options: {configFileName: 'src/tsconfig.app.json'}
-                    },
-                    'angular2-template-loader'
-                ]
+                loader: '@ngtools/webpack'
             }
         ]
     },
     plugins: [
+        new AngularCompilerPlugin({
+            mainPath: 'main.ts',
+            platform: 0,
+            tsConfigPath: 'src/tsconfig.app.json',
+            compilerOptions: {}
+        }),
         new SourceMapDevToolPlugin({
             filename: '[file].map[query]',
             moduleFilenameTemplate: '[resource-path]',
