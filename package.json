@@ -4,10 +4,11 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "webpack-dev-server --port=4200",
-    "build": "webpack",
+    "lint": "ng lint",
     "test": "karma start ./karma.conf.js",
-    "lint": "ng lint"
+    "start": "webpack-dev-server --config webpack.dev.js --open --port=4200",
+    "build": "webpack --config webpack.prod.js",
+    "server": "http-server dist -c-1"
   },
   "private": true,
   "dependencies": {
@@ -35,7 +36,9 @@
     "@types/jasmine": "~2.8.3",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
+    "angular2-template-loader": "^0.6.2",
     "autoprefixer": "^7.2.3",
+    "awesome-typescript-loader": "^4.0.0",
     "brotli-webpack-plugin": "^0.5.0",
     "circular-dependency-plugin": "^4.2.1",
     "clean-webpack-plugin": "^0.1.18",
@@ -77,6 +80,7 @@
     "webpack": "~3.10.0",
     "webpack-bundle-analyzer": "^2.10.0",
     "webpack-dev-server": "~2.11.0",
+    "webpack-merge": "^4.1.2",
     "workbox-cli": "^2.1.2"
   }
 }
